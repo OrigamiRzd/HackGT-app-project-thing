@@ -1,30 +1,114 @@
-
 public class Event {
 	private String dp;//description
-	
+	private Country c;
+
 	public Event() {}
-	
-	public Event(String description, Country c) {
+
+	public Event(String description,Country c) {
 		this.dp = description;
-		//Natural Disaster
-		if (dp.equals("ND")){
-			System.out.println("Natural Disaster! -not the game");
-			//population and gdp get effected negatively
-			//popularity if we get chance
-			float pop = c.getPop() - 10000f;
-			if(pop>0){
-			c.setPop(pop);
-			}
-			else c.setPop(0f);
-		}
-		if(dp.equals("Win")){
-			System.out.println("Something good happens!");
-			//GDP increases or gdp growth rate increases
-			//or something
-		}
-		if(dp.equals("Nothing")){}
-		//yearly report
-		c.Update();
-		c.print();
+		this.c = c;
+
 	}
-}
+	public void eventMessage(){
+	    if (dp == "NATDISASTER") {
+			    System.out.println("Oh no! A natural disaster has demolished your country!");
+					float pop = c.getPop()*0.85f;
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+			    if(finalpop > 0){
+			        c.setPop(finalpop);
+			    }
+			    else c.setPop(0f);
+					double gdp = c.getGDPRate()*0.70f;
+					double newgdp = Math.ceil(gdp);
+			    if(newgdp > 0){
+			        c.setGDPRate(newgdp);
+			    }
+			    else c.setGDPRate(0f);
+			}
+			else if(dp == "EPIDEMIC") {
+				  System.out.println("A harsh epidemic has resulted in several deaths along with a lower GDP");
+					float pop = c.getPop()*0.6f;
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+					if(finalpop > 0){
+							c.setPop(finalpop);
+					}
+					else c.setPop(0f);
+					double gdp = c.getGDPRate()*0.3f;
+					double newgdp = Math.ceil(gdp);
+					if(newgdp > 0){
+							c.setGDPRate(newgdp);
+					}
+					else c.setGDPRate(0f);
+			}
+			else if(dp == "DROUGHT") {
+          System.out.println("Sorry, a drought has led to the destruction of your crops");
+					float pop = c.getPop()*0.9f;
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+					if(finalpop > 0){
+							c.setPop(finalpop);
+					}
+					else c.setPop(0f);
+					double gdp = c.getGDPRate()*0.70f;
+					double newgdp = Math.ceil(gdp);
+					if(newgdp > 0){
+							c.setGDPRate(newgdp);
+					}
+					else c.setGDPRate(0f);
+			}
+			else if(dp == "GOLDSTRUCK") {
+				  System.out.println("Good News! A large gold mine has been found off the west coast!");
+					float pop = c.getPop()*1.2f;
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+					if(finalpop > 0){
+							c.setPop(finalpop);
+					}
+					else c.setPop(0f);
+					double gdp = c.getGDPRate()*1.8f;
+					double newgdp = Math.ceil(gdp);
+					if(newgdp > 0){
+							c.setGDPRate(newgdp);
+					}
+					else c.setGDPRate(0f);
+			}
+			else if(dp == "OILFOUND") {
+				  System.out.println("Congrats! There has been a large amount of oil discovered!");
+					float pop = c.getPop()*1.1f;
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+					if(finalpop > 0){
+							c.setPop(finalpop);
+					}
+					else c.setPop(0f);
+					double gdp = c.getGDPRate()*1.9f;
+					double newgdp = Math.ceil(gdp);
+					if(newgdp > 0){
+							c.setGDPRate(newgdp);
+					}
+					else c.setGDPRate(0f);
+			}
+			else if(dp == "DISCOVERY") {
+				  System.out.println("A new scientific discovery has been made, your GDP has significantly increased!");
+					float pop = c.getPop();
+					double newPop = Math.ceil(pop);
+					float finalpop = (float) newPop;
+					if(finalpop > 0){
+							c.setPop(finalpop);
+					}
+					else c.setPop(0f);
+					double gdp = c.getGDPRate()*2.1f;
+					double newgdp = Math.ceil(gdp);
+					if(newgdp > 0){
+							c.setGDPRate(newgdp);
+					}
+					else c.setGDPRate(0f);
+			}
+			else {
+				  System.out.println("Welcome Back! Nothing of significance has happened");
+			}
+		}
+
+	}
