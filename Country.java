@@ -31,6 +31,14 @@ public class Country {
 	year=0;
 	}
 	
+	public float getBudget(){
+		return this.budget;
+	}
+	
+	public float getPerCapita(){
+		return gdp/pop;
+	}
+	
 	public void setGDP(float x){
 		this.gdp = x;
 	}
