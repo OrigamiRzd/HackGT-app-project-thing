@@ -1,29 +1,24 @@
 public class PopulationTrend {
     private String size;
-    private long population;
+    private float population;
     public PopulationTrend(String countrySize) {
         size = countrySize;
     }
-    public long popSize() {
+    public float popSize() {
         if (size == "small") {
-            population = 3500000L;
+            population = 3500000f;
         }
         else if (size == "medium") {
-            population = 35000000L;
+            population = 35000000f;
         }
         else if (size == "large") {
-            population = 350000000L;
+            population = 350000000f;
         }
         else if (size == "colossal") {
-            population = 3500000000L;
+            population = 3500000000f;
         }
         return population;
     }
 
 }
 
-
-
-// generate a random population
-// small, medium, large, colossal country
-// population based on that
