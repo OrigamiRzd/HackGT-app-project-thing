@@ -8,6 +8,7 @@ public class Update {
      float popGrowth;
      float population;
      float capita;
+     Random randOj = new Random();
      Scanner prompt = new Scanner(System.in);
      public Update(float gdp, float taxRate, float population) {
           this.gdp = gdp;
@@ -16,7 +17,9 @@ public class Update {
      }
 
      public float nextYearGdP() {
+         float growthRate = randOj.nextFloat() * 20 - 20;
          gdp = gdp - budget;
+         gdp = gdp + gdp*(growthRate/100);
          return gdp;
      }
 
@@ -36,7 +39,6 @@ public class Update {
      }
 
      public float nextYearPop() {
-         Random randOj = new Random();
          float popGrowth = randOj.nextFloat() * 10 - 5;
          float popRate = popGrowth/100;
          population = population + population*popRate;
