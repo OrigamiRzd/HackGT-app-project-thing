@@ -21,8 +21,9 @@ public class Event {
 			    else c.setPop(0f);
 					double gdp = c.getGDPRate()*0.70f;
 					double newgdp = Math.ceil(gdp);
-			    if(newgdp > 0){
-			        c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+			    if(finalgdp > 0){
+			        c.setGDPRate(finalgdp);
 			    }
 			    else c.setGDPRate(0f);
 			}
@@ -37,8 +38,9 @@ public class Event {
 					else c.setPop(0f);
 					double gdp = c.getGDPRate()*0.3f;
 					double newgdp = Math.ceil(gdp);
-					if(newgdp > 0){
-							c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+					if(finalgdp > 0){
+							c.setGDPRate(finalgdp);
 					}
 					else c.setGDPRate(0f);
 			}
@@ -53,8 +55,9 @@ public class Event {
 					else c.setPop(0f);
 					double gdp = c.getGDPRate()*0.70f;
 					double newgdp = Math.ceil(gdp);
-					if(newgdp > 0){
-							c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+					if(finalgdp > 0){
+							c.setGDPRate(finalgdp);
 					}
 					else c.setGDPRate(0f);
 			}
@@ -69,8 +72,9 @@ public class Event {
 					else c.setPop(0f);
 					double gdp = c.getGDPRate()*1.8f;
 					double newgdp = Math.ceil(gdp);
-					if(newgdp > 0){
-							c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+					if(finalgdp > 0){
+							c.setGDPRate(finalgdp);
 					}
 					else c.setGDPRate(0f);
 			}
@@ -85,8 +89,9 @@ public class Event {
 					else c.setPop(0f);
 					double gdp = c.getGDPRate()*1.9f;
 					double newgdp = Math.ceil(gdp);
-					if(newgdp > 0){
-							c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+					if(finalgdp > 0){
+							c.setGDPRate(finalgdp);
 					}
 					else c.setGDPRate(0f);
 			}
@@ -101,8 +106,9 @@ public class Event {
 					else c.setPop(0f);
 					double gdp = c.getGDPRate()*2.1f;
 					double newgdp = Math.ceil(gdp);
-					if(newgdp > 0){
-							c.setGDPRate(newgdp);
+					float finalgdp = (float) newgdp;
+					if(finalgdp > 0){
+							c.setGDPRate(finalgdp);
 					}
 					else c.setGDPRate(0f);
 			}
