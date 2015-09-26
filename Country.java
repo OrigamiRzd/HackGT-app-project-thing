@@ -14,10 +14,11 @@ public class Country {
 	
 	Random randOj = new Random();
 	
-	public Country(String countryName,String faceName,float population,float gdp, float gdpGRate){
+	public Country(String countryName,String faceName,String pSize,float gdp, float gdpGRate){
+	PopulationTrend pT = new PopulationTrend(pSize);
 	this.cName = countryName;
 	this.fName = faceName;
-	this.pop = population;
+	this.pop = pT.popSize();
 	this.budget = 0;
 	this.taxRate = .01f;//[0 to .05]
 	this.gdp = gdp;

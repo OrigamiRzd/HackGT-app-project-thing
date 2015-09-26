@@ -10,13 +10,12 @@ public class Countrymaking {
 		String lName = in.next();
 		System.out.println("Population: ");
 		System.out.println("\n1.small\n2.medium\n3.large\n4.colossal");
-		PopulationTrend pT = new PopulationTrend(in.next());//infer correct input
-		float pop = pT.popSize();
-		System.out.println(pop +"\nGDP: ");
+		String pSize = in.next();
+		System.out.println(pSize +"\nGDP: ");
 		float gdp = in.nextFloat();
 		float gdpRate = 0;
 		
-		userCountry = new Country(name,lName,pop,gdp,gdpRate);
+		userCountry = new Country(name,lName,pSize,gdp,gdpRate);
 		Event doAThing = new Event();
 		RandomThing rT = new RandomThing();
 		String des = "";
