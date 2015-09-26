@@ -59,7 +59,7 @@ public class Country {
 	
 	public void Update(){
 		
-		float growthRate = randOj.nextFloat() * 20 - 20;
+		float growthRate = randOj.nextFloat() * 20 - 10;
 		System.out.println();
 		budget = budget + this.gdp*taxRate;//Budget calc
 		
