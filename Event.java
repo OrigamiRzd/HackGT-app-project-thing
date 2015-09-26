@@ -19,13 +19,13 @@ public class Event {
 			        c.setPop(finalpop);
 			    }
 			    else c.setPop(0f);
-					double gdp = c.getGDPRate()*0.70f;
+					double gdp = c.getGDP()*0.70f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 			    if(finalgdp > 0){
-			        c.setGDPRate(finalgdp);
+			        c.setGDP(finalgdp);
 			    }
-			    else c.setGDPRate(0f);
+			    else c.setGDP(0f);
 			}
 			else if(dp == "EPIDEMIC") {
 				  System.out.println("A harsh epidemic has resulted in several deaths along with a lower GDP");
@@ -36,13 +36,13 @@ public class Event {
 							c.setPop(finalpop);
 					}
 					else c.setPop(0f);
-					double gdp = c.getGDPRate()*0.3f;
+					double gdp = c.getGDP()*0.3f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 					if(finalgdp > 0){
-							c.setGDPRate(finalgdp);
+							c.setGDP(finalgdp);
 					}
-					else c.setGDPRate(0f);
+					else c.setGDP(0f);
 			}
 			else if(dp == "DROUGHT") {
           System.out.println("Sorry, a drought has led to the destruction of your crops");
@@ -53,13 +53,13 @@ public class Event {
 							c.setPop(finalpop);
 					}
 					else c.setPop(0f);
-					double gdp = c.getGDPRate()*0.70f;
+					double gdp = c.getGDP()*0.70f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 					if(finalgdp > 0){
-							c.setGDPRate(finalgdp);
+							c.setGDP(finalgdp);
 					}
-					else c.setGDPRate(0f);
+					else c.setGDP(0f);
 			}
 			else if(dp == "GOLDSTRUCK") {
 				  System.out.println("Good News! A large gold mine has been found off the west coast!");
@@ -70,13 +70,13 @@ public class Event {
 							c.setPop(finalpop);
 					}
 					else c.setPop(0f);
-					double gdp = c.getGDPRate()*1.8f;
+					double gdp = c.getGDP()*1.8f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 					if(finalgdp > 0){
-							c.setGDPRate(finalgdp);
+							c.setGDP(finalgdp);
 					}
-					else c.setGDPRate(0f);
+					else c.setGDP(0f);
 			}
 			else if(dp == "OILFOUND") {
 				  System.out.println("Congrats! There has been a large amount of oil discovered!");
@@ -87,13 +87,13 @@ public class Event {
 							c.setPop(finalpop);
 					}
 					else c.setPop(0f);
-					double gdp = c.getGDPRate()*1.9f;
+					double gdp = c.getGDP()*1.9f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 					if(finalgdp > 0){
-							c.setGDPRate(finalgdp);
+							c.setGDP(finalgdp);
 					}
-					else c.setGDPRate(0f);
+					else c.setGDP(0f);
 			}
 			else if(dp == "DISCOVERY") {
 				  System.out.println("A new scientific discovery has been made, your GDP has significantly increased!");
@@ -104,13 +104,13 @@ public class Event {
 							c.setPop(finalpop);
 					}
 					else c.setPop(0f);
-					double gdp = c.getGDPRate()*2.1f;
+					double gdp = c.getGDP()*2.1f;
 					double newgdp = Math.ceil(gdp);
 					float finalgdp = (float) newgdp;
 					if(finalgdp > 0){
-							c.setGDPRate(finalgdp);
+							c.setGDP(finalgdp);
 					}
-					else c.setGDPRate(0f);
+					else c.setGDP(0f);
 			}
 			else {
 				  System.out.println("Welcome Back! Nothing of significance has happened");
