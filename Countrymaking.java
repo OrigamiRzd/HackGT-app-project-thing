@@ -9,16 +9,29 @@ public class Countrymaking {
 		System.out.println("Leader Name: ");
 		String lName = in.next();
 		System.out.println("Population: ");
-		Float pop = in.nextFloat();
-		System.out.println("GDP: ");
-		double gdp = in.nextDouble();
-		double gdpRate = 0;
+		System.out.println("\n1.small\n2.medium\n3.large\n4.colossal");
+		PopulationTrend pT = new PopulationTrend(in.next());//infer correct input
+		float pop = pT.popSize();
+		System.out.println(pop +"\nGDP: ");
+		float gdp = in.nextFloat();
+		float gdpRate = 0;
 		
 		userCountry = new Country(name,lName,pop,gdp,gdpRate);
 		Event doAThing = new Event();
-		
+		RandomThing rT = new RandomThing();
+		String des = "";
 		while(true){
-			doAThing
+			double ran = rT.roll();
+			if(ran > 50){
+				des = "Nothing";
+			}
+			if(ran < 20){
+				des = "ND";
+			}
+			doAThing = new Event(des,userCountry);
+			System.out.println("put something");
+			String c = in.next();
+			
 		}
 	}
 

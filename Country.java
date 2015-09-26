@@ -1,28 +1,39 @@
+import java.util.Random;
 
 public class Country {
 	private String cName;
 	private String fName;
 	private Float pop;
-	private double budget;
-	private double taxRate;
-	private double gdp;
-	private double gdpGrowthRate;
+	private float budget;
+	private float taxRate;
+	private float gdp;
+	private float gdpGrowthRate;
 	private static int x;
 	
 	public Country(){}
 	
-	public Country(String countryName,String faceName,Float population,double gdp, double gdpGRate){
+	Random randOj = new Random();
+	
+	public Country(String countryName,String faceName,float population,float gdp, float gdpGRate){
 	this.cName = countryName;
 	this.fName = faceName;
 	this.pop = population;
 	this.budget = 0;
-	this.taxRate = .1;//[0 to .2]
+	this.taxRate = .01f;//[0 to .05]
 	this.gdp = gdp;
 	this.gdpGrowthRate = gdpGRate;//[-.2 to .2] make a bell curve random pick thing
 	x=0;
 	}
 	
-	public void setTaxRate(double x){
+	public void setGDP(float x){
+		this.gdp = x;
+	}
+	
+	public float getGDP(){
+		return this.gdp;
+	}
+	
+	public void setTaxRate(float x){
 		this.taxRate = x;
 	}
 	
@@ -30,7 +41,7 @@ public class Country {
 		return this.taxRate;
 	}
 	
-	public void setGDPRate(double x){
+	public void setGDPRate(float x){
 		this.gdpGrowthRate = x;
 	}
 	
@@ -47,10 +58,20 @@ public class Country {
 	}
 	
 	public void Update(){
-	this.gdp = (1+gdpGrowthRate)*gdp;
-	this.budget = taxRate*this.gdp + budget;
+		
+		float growthRate = randOj.nextFloat() * 20 - 20;
+		System.out.println();
+		budget = budget + this.gdp*taxRate;//Budget calc
+		
+		this.gdp = this.gdp - budget;
+		this.gdp = this.gdp + this.gdp*(growthRate/100);
+        
+        float popGrowth = randOj.nextFloat() * 10 - 5;
+        float popRate = popGrowth/100;
+        pop = pop + pop*popRate;
 	
-	this.gdp = gdp-budget;
+        System.out.println(growthRate + "\n" +popGrowth);
+		
 	x++;
 	}
 	

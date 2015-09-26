@@ -22,11 +22,9 @@ public class Event {
 			//GDP increases or gdp growth rate increases
 			//or something
 		}
-		if(dp.equals("Nothing"))
+		if(dp.equals("Nothing")){}
 		//yearly report
-		if(dp.equals("report")){
-			c.Update();
-			c.print();
-		}
+		c.Update();
+		c.print();
 	}
 }

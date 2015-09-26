@@ -5,16 +5,16 @@ public class PopulationTrend {
         size = countrySize;
     }
     public float popSize() {
-        if (size == "small") {
+        if (size.equals("small")) {
             population = 3500000f;
         }
-        else if (size == "medium") {
+        else if (size.equals("medium")) {
             population = 35000000f;
         }
-        else if (size == "large") {
+        else if (size.equals("large")) {
             population = 350000000f;
         }
-        else if (size == "colossal") {
+        else if (size.equals("colossal")) {
             population = 3500000000f;
         }
         return population;
