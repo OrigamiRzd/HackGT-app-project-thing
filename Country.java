@@ -100,5 +100,13 @@ public class Country {
 		String out = "Name: " +cName + "\nLeader: " + fName + "\nPopulation: " + pop + "\nBudget: " + budget + "\nGDP: " + gdp + "\nYear: " + year;
 		System.out.println(out);
 	}
+	
+	public int compareTo(Country a, Country b){
+		if(a.getPerCapita() < b.getPerCapita()){
+			return -1;
+		}else if (a.getPerCapita() > b.getPerCapita()){
+			return 1;
+		}else return 0;
+	}
 
 }
