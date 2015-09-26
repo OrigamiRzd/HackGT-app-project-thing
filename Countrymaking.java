@@ -12,13 +12,14 @@ public class Countrymaking {
 		Float pop = in.nextFloat();
 		System.out.println("GDP: ");
 		double gdp = in.nextDouble();
+		double gdpRate = 0;
 		
-		userCountry = new Country(name,lName,pop,gdp);
+		userCountry = new Country(name,lName,pop,gdp,gdpRate);
+		Event doAThing = new Event();
 		
-		
-		userCountry.print();
-		userCountry.Update();
-		userCountry.print();
+		while(true){
+			doAThing
+		}
 	}
 
 }
