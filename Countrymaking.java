@@ -10,10 +10,14 @@ public class Countrymaking {
 		String lName = in.next();
 		System.out.println("Population: ");
 		Float pop = in.nextFloat();
-		System.out.println("Budget: ");
-		double bud = in.nextDouble();
+		System.out.println("GDP: ");
+		double gdp = in.nextDouble();
 		
-		userCountry = new Country(name,lName,pop,bud);
+		userCountry = new Country(name,lName,pop,gdp);
+		
+		
+		userCountry.print();
+		userCountry.Update();
 		userCountry.print();
 	}
 

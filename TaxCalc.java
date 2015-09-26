@@ -1,7 +1,7 @@
 
 public class TaxCalc {
 
-	public TaxCalc(int iTaxRate) {
+	public TaxCalc(double iTaxRate) {
 		
 	}
 }
