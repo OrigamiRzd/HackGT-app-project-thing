@@ -31,6 +31,14 @@ public class Country {
 	year=0;
 	}
 	
+	public String getCName(){
+		return this.cName;
+	}
+	
+	public String getfName(){
+		return this.fName;
+	}
+	
 	public float getBudget(){
 		return this.budget;
 	}
@@ -101,7 +109,11 @@ public class Country {
 		System.out.println(out);
 	}
 	
-	public int compareTo(Country a, Country b){
+	public String toString(){
+		return cName +" "+ fName;
+	}
+	
+	public int comparePerCapita(Country a, Country b){
 		if(a.getPerCapita() < b.getPerCapita()){
 			return -1;
 		}else if (a.getPerCapita() > b.getPerCapita()){
