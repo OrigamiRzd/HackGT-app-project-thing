@@ -8,7 +8,7 @@ public class Country {
 	private float taxRate;
 	private float gdp;
 	private float gdpGrowthRate;
-	private static int x;
+	private static int year;
 	
 	public Country(){}
 	
@@ -23,7 +23,7 @@ public class Country {
 	this.taxRate = .01f;//[0 to .05]
 	this.gdp = gdp;
 	this.gdpGrowthRate = gdpGRate;//[-.2 to .2] make a bell curve random pick thing
-	x=0;
+	year=0;
 	}
 	
 	public void setGDP(float x){
@@ -58,6 +58,10 @@ public class Country {
 		return pop;
 	}
 	
+	public int getYear(){
+		return year;
+	}
+	
 	public void Update(){
 		
 		float growthRate = randOj.nextFloat() * 20 - 10;
@@ -73,12 +77,13 @@ public class Country {
 	
         System.out.println(growthRate + "\n" +popGrowth);
 		
-	x++;
+	year++;
 	}
 	
 	public void print(){
-		String out = "Name: " +cName + "\nLeader: " + fName + "\nPopulation: " + pop + "\nBudget: " + budget + "\nGDP: " + gdp + "\nYear: " + x;
+		String out = "Name: " +cName + "\nLeader: " + fName + "\nPopulation: " + pop + "\nBudget: " + budget + "\nGDP: " + gdp + "\nYear: " + year;
 		System.out.println(out);
+		System.out.println(this.pop.SIZE);
 	}
 
 }
