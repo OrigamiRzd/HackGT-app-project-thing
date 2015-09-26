@@ -10,6 +10,7 @@ public class Event {
 		if (dp.equals("ND")){
 			System.out.println("Natural Disaster! -not the game");
 			//population and gdp get effected negatively
+			//popularity if we get chance
 			float pop = c.getPop() - 10000f;
 			if(pop>0){
 			c.setPop(pop);
