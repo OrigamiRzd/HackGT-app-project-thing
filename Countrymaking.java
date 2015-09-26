@@ -13,21 +13,21 @@ public class Countrymaking {
 		String pSize = in.next();
 		System.out.println(pSize +"\nGDP: ");
 		float gdp = in.nextFloat();
-		float gdpRate = 0;
 		
-		userCountry = new Country(name,lName,pSize,gdp,gdpRate);
+		userCountry = new Country(name,lName,pSize,gdp);
 		Event doAThing = new Event();
 		RandomThing rT = new RandomThing();
 		String des = "";
 		while(true){
 			double ran = rT.roll();
 			if(ran > 50){
-				des = "Nothing";
-			}
-			if(ran < 20){
-				des = "ND";
+				des = "OILFOUND";
+			}else if(ran <51){
+				des = "DISCOVERY";
 			}
 			doAThing = new Event(des,userCountry);
+			doAThing.eventMessage();
+			
 			System.out.println("put something");
 			String c = in.next();
 			

@@ -16,8 +16,10 @@ public class Country {
 	
 	Random randOj = new Random();
 	
-	public Country(String countryName,String faceName,String pSize,float gdp/*, double gdpGRate*/){
+	public Country(String countryName,String faceName,String pSize,float gdp){
 	PopulationTrend pT = new PopulationTrend(pSize);
+	this.gdpGrowthRate = randOj.nextFloat() * 20 - 10;
+	this.popGrowthRate = (randOj.nextFloat() * 10 - 5)/100;
 	this.cName = countryName;
 	this.fName = faceName;
 	this.pop = pT.popSize();
@@ -71,17 +73,17 @@ public class Country {
 	
 	public void Update(){
 		
-		float growthRate = randOj.nextFloat() * 20 - 10;
+		this.gdpGrowthRate = randOj.nextFloat() * 20 - 10;
 		System.out.println();
 		budget = budget + (float)(this.gdp*taxRate);//Budget calc
 		
 		this.gdp = this.gdp - budget;
-		this.gdp = this.gdp + this.gdp*(growthRate/100);
+		this.gdp = this.gdp + this.gdp*(gdpGrowthRate/100);
         
-        float popGrowthRate = (randOj.nextFloat() * 10 - 5)/100;
+        this.popGrowthRate = (randOj.nextFloat() * 10 - 5)/100;
         pop = pop + pop*popGrowthRate;
 	
-        System.out.println(growthRate + "\n" +popGrowthRate);
+        System.out.println(gdpGrowthRate + "\n" +popGrowthRate);
 		
 	year++;
 	}
@@ -89,7 +91,6 @@ public class Country {
 	public void print(){
 		String out = "Name: " +cName + "\nLeader: " + fName + "\nPopulation: " + pop + "\nBudget: " + budget + "\nGDP: " + gdp + "\nYear: " + year;
 		System.out.println(out);
-		System.out.println(this.pop.SIZE);
 	}
 
 }

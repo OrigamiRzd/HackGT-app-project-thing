@@ -9,6 +9,11 @@ public class Event {
 		this.c = c;
 
 	}
+	
+	public void setDes(String des){
+		this.dp = des;
+	}
+	
 	public void eventMessage(){
 	    if (dp == "NATDISASTER") {
 			    System.out.println("Oh no! A natural disaster has demolished your country!");
@@ -115,6 +120,8 @@ public class Event {
 			else {
 				  System.out.println("Welcome Back! Nothing of significance has happened");
 			}
+	    c.Update();
+	    c.print();
 		}
 
 	}
