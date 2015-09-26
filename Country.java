@@ -6,7 +6,7 @@ public class Country {
 	private Float pop;
 	private float popGrowthRate;
 	private float budget;
-	private double taxRate;
+	private float taxRate;
 	private float gdp;
 	private float gdpGrowthRate;
 	private static int year;
@@ -43,7 +43,7 @@ public class Country {
 		this.taxRate = x;
 	}
 	
-	public double getTaxRate(){
+	public float getTaxRate(){
 		return this.taxRate;
 	}
 	
@@ -51,7 +51,7 @@ public class Country {
 		this.gdpGrowthRate = x;
 	}
 	
-	public double getGDPRate(){
+	public float getGDPRate(){
 		return this.gdpGrowthRate;
 	}
 	
@@ -59,7 +59,7 @@ public class Country {
 		this.pop = population;
 	}
 	
-	public Float getPop(){
+	public float getPop(){
 		return pop;
 	}
 	
