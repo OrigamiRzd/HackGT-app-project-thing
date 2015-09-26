@@ -19,11 +19,7 @@ public class PopulationTrend {
         }
         return population;
     }
-    public static void main(String [] args) {
-        PopulationTrend popOne = new PopulationTrend("colossal");
-        long sizing = popOne.popSize();
-        System.out.println("POPULATION SIZE: " + sizing);
-    }
+
 }
 
 
