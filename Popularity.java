@@ -23,11 +23,11 @@ class Popularity {
     }
 
 
-    public void chooseWelfare(welfareCount) {
+    public void chooseWelfare(int welfareCount) {
         int x = 0;
         while ( x < welfareCount) {
              population = country.getPop();
-             gdp = country.getGDP();
+             float gdp = country.getGDP();
              budget = country.getBudget();
              budget = budget - (population*1100);
              population = population * 1.1f;
@@ -41,11 +41,11 @@ class Popularity {
              x += 1;
            }
     }
-    public void chooseDefense(defenseCount) {
+    public void chooseDefense(int defenseCount) {
         int x = 0;
         while ( x < defenseCount) {
              population = country.getPop();
-             gdp = country.getGDP();
+             float gdp = country.getGDP();
              budget = country.getBudget();
              budget = budget - (population*2500);
              population = population * 0.9f;
@@ -60,11 +60,11 @@ class Popularity {
            }
     }
 
-    public void chooseEnvironment(environmentCount) {
+    public void chooseEnvironment(int environmentCount) {
         int x = 0;
         while ( x < environmentCount) {
              population = country.getPop();
-             gdp = country.getGDP();
+             float gdp = country.getGDP();
              budget = country.getBudget();
              budget = budget - (population*500);
              population = population * 1.2f;
