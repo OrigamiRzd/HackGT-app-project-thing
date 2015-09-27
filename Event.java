@@ -14,6 +14,10 @@ public class Event {
 		this.dp = des;
 	}
 	
+	public String getDes(){
+		return this.dp;
+	}
+	
 	public void eventMessage(){
 	    if (dp == "NATDISASTER") {
 			    System.out.println("Oh no! A natural disaster has demolished your country!");

@@ -17,14 +17,10 @@ public class Countrymaking {
 		userCountry = new Country(name,lName,pSize,gdp);
 		Event doAThing = new Event();
 		RandomThing rT = new RandomThing();
+		EventRandomizer er = new EventRandomizer();
 		String des = "";
 		while(true){
-			double ran = rT.roll();
-			if(ran > 50){
-				des = "OILFOUND";
-			}else if(ran <51){
-				des = "DISCOVERY";
-			}
+			des = er.random();
 			doAThing = new Event(des,userCountry);
 			doAThing.eventMessage();
 			
