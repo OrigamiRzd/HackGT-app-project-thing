@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -17,7 +19,8 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.util.ArrayList;
-//Created by Shantanu Mantri//
+import java.util.Comparator;
+
 public class Main extends Application {
 
     private ArrayList<String> usern = new ArrayList<>(100);
@@ -25,6 +28,7 @@ public class Main extends Application {
     private String leaderName = "";
     private String countryName= "";
     private Country country;
+    private ArrayList<Country> AI = new ArrayList<>(5);
 
     public boolean login(String username, String password, Label label, Button login, Stage stage) {
         if (!usern.contains(username) || !passwd.contains(password)) {
@@ -49,26 +53,69 @@ public class Main extends Application {
         }
     }
 
-    public void makeCountry(TextField one, TextField two, Stage stage, RadioButton a, RadioButton b, RadioButton c) {
+    public void makeCountry(TextField one, TextField two, Stage stage, RadioButton a, RadioButton b, RadioButton c, RadioButton first, RadioButton second, RadioButton third) {
         this.leaderName = one.getText();
         this.countryName = two.getText();
+        float gdp;
+        float population;
         String ans;
         if (a.isSelected()) {
             ans = "small";
+            population = 350000;
         } else if (b.isSelected()) {
             ans = "medium";
+            population = 3500000;
         } else if(c.isSelected()) {
             ans = "large";
+            population = 35000000;
         } else {
             ans = "colossal";
+            population = 350000000;
         }
-        this.country = new Country(this.countryName, this.leaderName,ans,20f,.1f);
+        if (first.isSelected()) {
+            gdp = 75000f;
+        } else if (second.isSelected()) {
+            gdp = 50000f;
+        } else {
+            gdp = 25000f;
+        }
+        this.country = new Country(this.countryName, this.leaderName,ans,gdp*population);
         //GO TO THE NEXT SCENE//
+        Country emeraldia = new Country("Emeraldia", "Rayquaza", "large", 40000*50000f);
+        Country johnCena = new Country("WWE", "John Cena", "small", 20000*30000f);
+        Country rickroll = new Country("Musica", "Rick Roll", "medium", 30000*20000f);
+        Country imouto = new Country("Japan", "Imouto-Chan", "colossal",50000*50000f);
+        Country steam = new Country("Steam", "Richard Deng", "large", 3500000*40000f);
+        this.AI.add(emeraldia);
+        this.AI.add(johnCena);
+        this.AI.add(rickroll);
+        this.AI.add(imouto);
+        this.AI.add(steam);
+        this.AI.add(this.country);
+        this.AI.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o1.comparePerCapita(o1, o2);
+            }
+        });
         countryDisplayScene(stage);
     }
 
     public void update(Stage stage) {
-        this.country.Update();
+        changes(stage);
+    }
+
+    public void update(Stage stage, Slider slider) {
+        this.country.setTaxRate((float) slider.getValue());
+        for(Country c: AI) {
+            c.Update();
+        }
+        this.AI.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o1.comparePerCapita(o1, o2);
+            }
+        });
         countryDisplayScene(stage);
     }
 
@@ -153,8 +200,8 @@ public class Main extends Application {
         grid.getChildren().addAll(login, create, user, pass, userText, passText, temp);
         Scene select = new Scene(grid);
         stage.setTitle("Login");
-        stage.setWidth(500);
-        stage.setHeight(300);
+        stage.setWidth(360);
+        stage.setHeight(175);
         stage.setScene(select);
         stage.show();
 
@@ -214,7 +261,7 @@ public class Main extends Application {
 
         //Button actions//
         confirm.setOnAction(e -> {
-            makeCountry(leader, country, stage, smallPop, mediumPop, largePop);
+            makeCountry(leader, country, stage, smallPop, mediumPop, largePop,first,second,third);
         });
     }
 
@@ -227,12 +274,17 @@ public class Main extends Application {
         Label popLabel = new Label("Population Rate of Change: ");
         Label taxLabel = new Label("Tax Rate: ");
         Label yearLabel = new Label("Year: ");
+        Label rankings = new Label("Current Rankings (GDP Per Capita): ");
         TextField country = new TextField();
         TextField leader = new TextField();
         TextField gdp = new TextField();
         TextField pop = new TextField();
         TextField year = new TextField();
         TextField tax = new TextField();
+        ListView<Country> list = new ListView<>();
+        ObservableList<Country> ranking = FXCollections.observableArrayList(this.AI);
+        list.setItems(ranking);
+        VBox vbox = new VBox(list);
         tax.setEditable(false);
         country.setEditable(false);
         leader.setEditable(false);
@@ -242,11 +294,11 @@ public class Main extends Application {
         country.setText(this.countryName);
         leader.setText(this.leaderName);
         float b = this.country.getPop();
-        double c = this.country.getGDPRate();
-        double d = this.country.getTaxRate();
-        gdp.setText(Double.toString(c));
+        float c = this.country.getGDPRate();
+        float d = this.country.getTaxRate();
+        gdp.setText(Float.toString(c));
         pop.setText(Float.toString(b));
-        tax.setText(Double.toString(d));
+        tax.setText(Float.toString(d));
         GridPane grid = new GridPane();
         GridPane.setConstraints(countryName, 0, 1);
         GridPane.setConstraints(leaderName, 0, 2);
@@ -254,6 +306,7 @@ public class Main extends Application {
         GridPane.setConstraints(popLabel, 0, 4);
         GridPane.setConstraints(taxLabel,0, 5);
         GridPane.setConstraints(yearLabel,0, 6);
+        GridPane.setConstraints(rankings,0, 7);
         GridPane.setConstraints(country, 2, 1);
         GridPane.setConstraints(leader, 2, 2);
         GridPane.setConstraints(gdp, 2, 3);
@@ -261,11 +314,12 @@ public class Main extends Application {
         GridPane.setConstraints(next,2,10);
         GridPane.setConstraints(year,2,6);
         GridPane.setConstraints(tax, 2,5);
-        grid.getChildren().addAll(tax, taxLabel,gdp,pop,year,yearLabel, next, countryName, leaderName, mainLabel, gdpLabel, popLabel, country, leader);
+        GridPane.setConstraints(vbox,2,8);
+        grid.getChildren().addAll(tax, taxLabel,gdp,pop,year,yearLabel, next, countryName, leaderName, mainLabel, gdpLabel, popLabel, country, leader,vbox,rankings);
         Scene now = new Scene(grid);
         stage.setTitle("REPORT CARD");
         stage.setWidth(500);
-        stage.setHeight(300);
+        stage.setHeight(600);
         stage.setScene(now);
         stage.show();
         next.setOnAction(e -> update(stage));
@@ -310,5 +364,63 @@ public class Main extends Application {
         stage.show();
         //Button Actions//
         next.setOnAction(e -> reportCardScene(stage));
+    }
+
+    public void changes(Stage stage) {
+        Button confirm = new Button("Confirm");
+        Label spendingPower = new Label("Spending Focus: "); //Radio Buttons Welfare, Defense//
+        Label taxRates = new Label("Tax Rate: "); //Slider to change tax rates//
+        Label socialPolicy = new Label("Social Policy: "); //Radio Buttons Communism,Socialism,Capitalism,Fascism//
+        //Spending Power RadioButtons//
+        RadioButton welfare = new RadioButton("Welfare");
+        RadioButton defense = new RadioButton("Defense");
+        RadioButton other = new RadioButton("Other");
+        ToggleGroup power = new ToggleGroup();
+        welfare.setToggleGroup(power);
+        welfare.setSelected(true);
+        defense.setToggleGroup(power);
+        other.setToggleGroup(power);
+        //Tax Rate Slider//
+        Slider tax = new Slider();
+        tax.setMin(0);
+        tax.setMax(100);
+        tax.setValue(this.country.getTaxRate());
+        tax.setShowTickLabels(true);
+        tax.setShowTickMarks(true);
+        tax.setMajorTickUnit(20);
+        tax.setMinorTickCount(2);
+        tax.setBlockIncrement(10);
+        //Social Policy Button//
+        RadioButton communism = new RadioButton("Communism");
+        RadioButton socialism = new RadioButton("Socialism");
+        RadioButton capitalism = new RadioButton("Capitalism");
+        RadioButton fascism = new RadioButton("Fascism");
+        ToggleGroup social = new ToggleGroup();
+        communism.setToggleGroup(social);
+        communism.setSelected(true);
+        socialism.setToggleGroup(social);
+        capitalism.setToggleGroup(social);
+        fascism.setToggleGroup(social);
+        //VBoxes for Change radiobuttons//
+        VBox s = new VBox(communism,socialism,capitalism,fascism);
+        VBox p = new VBox(welfare,defense,other);
+        //GRID PLACEMENTS//
+        GridPane grid = new GridPane();
+        GridPane.setConstraints(socialPolicy, 0, 0);
+        GridPane.setConstraints(spendingPower, 4, 0);
+        GridPane.setConstraints(taxRates, 4, 4);
+        GridPane.setConstraints(s, 2, 0);
+        GridPane.setConstraints(p, 5, 0);
+        GridPane.setConstraints(tax,5,6);
+        GridPane.setConstraints(confirm, 3, 10);
+        grid.getChildren().addAll(s, p, tax, confirm, spendingPower, taxRates, socialPolicy);
+        Scene now = new Scene(grid);
+        stage.setTitle("Changes for the Year?");
+        stage.setWidth(550);
+        stage.setHeight(250);
+        stage.setScene(now);
+        stage.show();
+
+        confirm.setOnAction(e -> update(stage, tax));
     }
 }
