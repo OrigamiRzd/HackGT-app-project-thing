@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 class Popularity {
     private float taxRate;
     private float budget;
