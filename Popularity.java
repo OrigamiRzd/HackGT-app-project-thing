@@ -23,97 +23,14 @@ class Popularity {
     }
 
 
-    public void chooseWelfare(int welfareCount) {
-        int x = 0;
-        while ( x < welfareCount) {
-             population = country.getPop();
-             float gdp = country.getGDP();
-             budget = country.getBudget();
-             budget = budget - (population*1100);
-             population = population * 1.1f;
-             gdp = gdp * 1.05f;
-             if (budget >= 0) {
-                 country.setPop(population);
-                 country.setGDP(gdp);
-                 country.setBudget(budget);
-                 realWelfare += 1;
-             }
-             x += 1;
-           }
+    public void chooseWelfare(int welfareCount, int defenseCount, int environmentCount) {
+        this.popularity = 0;
+        this.budget = this.country.getBudget();
+        this.popularity = (welfareCount + defenseCount + environmentCount - this.country.getTaxRate())/3;
+        this.budget -= welfareCount*100 + defenseCount*100 + environmentCount*100;
+        this.country.setBudget(this.budget);
     }
-    public void chooseDefense(int defenseCount) {
-        int x = 0;
-        while ( x < defenseCount) {
-             population = country.getPop();
-             float gdp = country.getGDP();
-             budget = country.getBudget();
-             budget = budget - (population*2500);
-             population = population * 0.9f;
-             gdp = gdp * 1.09f;
-             if (budget >= 0){
-                 country.setPop(population);
-                 country.setGDP(gdp);
-                 country.setBudget(budget);
-                 realDefense += 1;
-             }
-             x += 1;
-           }
+    public float findPopularity() {
+        return this.popularity;
     }
-
-    public void chooseEnvironment(int environmentCount) {
-        int x = 0;
-        while ( x < environmentCount) {
-             population = country.getPop();
-             float gdp = country.getGDP();
-             budget = country.getBudget();
-             budget = budget - (population*500);
-             population = population * 1.2f;
-             gdp = gdp * 0.95f;
-             if (budget >= 0){
-                 country.setPop(population);
-                 country.setGDP(gdp);
-                 country.setBudget(budget);
-                 realEnvironment += 1;
-             }
-             x += 1;
-           }
-    }
-    public float findPopularity(){
-        float total = realEnvironment + realDefense + realWelfare;
-        taxRate = country.getTaxRate();
-        taxPop = 25- Math.abs(25-taxRate);
-        if (taxPop < 0) {
-            taxPop = 0;
-        }
-        if (total > 0) {
-            partEnvironment = realEnvironment/total;
-            partDefense = realDefense/total;
-            partWelfare = realWelfare/total;
-            envPop = ((1/3) - Math.abs((1/3)-partEnvironment))*300/4;
-            welPop = ((1/3) - Math.abs((1/3)-partWelfare))*300/4;
-            defPop = ((1/3) - Math.abs((1/3)-partDefense))*300/4;
-
-            if (envPop < 0){
-                envPop = 0;
-            }
-            if (welPop < 0){
-                welPop = 0;
-            }
-            if (defPop < 0){
-                defPop = 0;
-            }
-      }
-      else {
-           envPop = 0;
-           welPop = 0;
-           defPop = 0;
-      }
-      popularity = taxPop + envPop + welPop + defPop;
-      return popularity;
-
-
-    }
-
-
-
 }
