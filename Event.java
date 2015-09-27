@@ -1,13 +1,14 @@
 public class Event {
 	private String dp;//description
 	private Country c;
-
+	private String message;
+	
 	public Event() {}
 
 	public Event(String description,Country c) {
 		this.dp = description;
 		this.c = c;
-
+		this.message = "";
 	}
 	
 	public void setDes(String des){
@@ -18,9 +19,13 @@ public class Event {
 		return this.dp;
 	}
 	
+	public String message(){
+		return this.message;
+	}
+	
 	public void eventMessage(){
 	    if (dp == "NATDISASTER") {
-			    System.out.println("Oh no! A natural disaster has demolished your country!");
+			    this.message = "Oh no! A natural disaster has demolished your country!";
 					float pop = c.getPop()*0.85f;
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
@@ -37,7 +42,7 @@ public class Event {
 			    else c.setGDP(0f);
 			}
 			else if(dp == "EPIDEMIC") {
-				  System.out.println("A harsh epidemic has resulted in several deaths along with a lower GDP");
+				  this.message = "A harsh epidemic has resulted in several deaths along with a lower GDP";
 					float pop = c.getPop()*0.6f;
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
@@ -54,7 +59,7 @@ public class Event {
 					else c.setGDP(0f);
 			}
 			else if(dp == "DROUGHT") {
-          System.out.println("Sorry, a drought has led to the destruction of your crops");
+					this.message = "Sorry, a drought has led to the destruction of your crops";
 					float pop = c.getPop()*0.9f;
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
@@ -71,7 +76,7 @@ public class Event {
 					else c.setGDP(0f);
 			}
 			else if(dp == "GOLDSTRUCK") {
-				  System.out.println("Good News! A large gold mine has been found off the west coast!");
+				  this.message = "Good News! A large gold mine has been found off the west coast!";
 					float pop = c.getPop()*1.2f;
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
@@ -88,7 +93,7 @@ public class Event {
 					else c.setGDP(0f);
 			}
 			else if(dp == "OILFOUND") {
-				  System.out.println("Congrats! There has been a large amount of oil discovered!");
+				  this.message = "Congrats! There has been a large amount of oil discovered!";
 					float pop = c.getPop()*1.1f;
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
@@ -105,7 +110,7 @@ public class Event {
 					else c.setGDP(0f);
 			}
 			else if(dp == "DISCOVERY") {
-				  System.out.println("A new scientific discovery has been made, your GDP has significantly increased!");
+				  this.message = "A new scientific discovery has been made, your GDP has significantly increased!";
 					float pop = c.getPop();
 					double newPop = Math.ceil(pop);
 					float finalpop = (float) newPop;
