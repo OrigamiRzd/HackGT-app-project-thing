@@ -9,7 +9,7 @@ public class Country {
 	private float taxRate;
 	private float gdp;
 	private float gdpGrowthRate;
-	private static int year;
+	private int year;
 	
 	
 	public Country(){}
@@ -28,7 +28,7 @@ public class Country {
 	this.gdp = gdp;
 	
 	//this.gdpGrowthRate = gdpGRate;//[-.2 to .2] make a bell curve random pick thing
-	year=0;
+	this.year=1;
 	}
 	
 	public String getCName(){
@@ -41,6 +41,10 @@ public class Country {
 	
 	public float getBudget(){
 		return this.budget;
+	}
+	
+	public void setBudget(float bud){
+		this.budget = bud;
 	}
 	
 	public float getPerCapita(){
@@ -83,6 +87,10 @@ public class Country {
 		this.popGrowthRate = pr;
 	}
 	
+	public float getPopRate(){
+		return popGrowthRate;
+	}
+	
 	public int getYear(){
 		return year;
 	}
@@ -110,14 +118,14 @@ public class Country {
 	}
 	
 	public String toString(){
-		return cName +" "+ fName;
+		return cName +", "+ fName+ ", " + this.getPerCapita();
 	}
 	
 	public int comparePerCapita(Country a, Country b){
 		if(a.getPerCapita() < b.getPerCapita()){
-			return -1;
-		}else if (a.getPerCapita() > b.getPerCapita()){
 			return 1;
+		}else if (a.getPerCapita() > b.getPerCapita()){
+			return -1;
 		}else return 0;
 	}
 
